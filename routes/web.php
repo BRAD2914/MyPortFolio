@@ -6,10 +6,10 @@ use App\Http\Controllers\PortfolioController;
 
 Route::get('/', [PortfolioController::class, 'index']);
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 Route::get('/about', function () {
-    return view('index'); // Make sure the view name matches your Blade file
+    return view('welcome'); // Make sure the view name matches your Blade file
 })->name('about');
 
 Route::get('/images', function () {
