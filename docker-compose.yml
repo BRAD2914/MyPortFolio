@@ -1,0 +1,28 @@
+version: '3.8'  # Specify the version of the Docker Compose file format
+
+services:
+  app:
+    build: 
+      context: .    # Path to the Dockerfile
+      dockerfile: Dockerfile  # Name of the Dockerfile (optional)
+    ports:
+      - "3000:3000"  # Map port 3000 on the host to port 3000 in the container
+    volumes:
+      - .:/app  # Mount the current directory to /app in the container
+    environment:
+      - NODE_ENV=development  # Set environment variables
+      - DB_HOST=db
+
+  db:
+    image: mysql:5.7  # Use the official MySQL image
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example  # Set the root password for MySQL
+      MYSQL_DATABASE: mydatabase  # Create a default database
+      MYSQL_USER: user  # Create a user
+      MYSQL_PASSWORD: password  # Set the user's password
+    volumes:
+      - db_data:/var/lib/mysql  # Persist MySQL data
+
+volumes:
+  db_data:  # Define a named volume for MySQL data persistence
