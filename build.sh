@@ -1,10 +1,10 @@
 #!/bin/bash
 set -eux
 
-# Install PHP dependencies
+# Install PHP and dependencies
 composer install --no-dev --prefer-dist
-npm install; npm run build
-# Run Laravel setup commands
+
+# Run Laravel setup
 php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
